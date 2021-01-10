@@ -21,6 +21,7 @@ Auth::routes();
 // });
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('{class_id}/delete', 'ClassController@deleteClass');
 
 Route::get('/class/{class_id}', 'ClassController@view');
 
@@ -31,5 +32,7 @@ Route::post('/class/{class_id}/editClass/success', 'ClassController@editClass');
 
 Route::get('/class/{class_id}/addPertemuan', 'PertemuanController@viewAddPertemuan');
 Route::post('/class/{class_id}/addPertemuan/success', 'PertemuanController@AddPertemuan');
-Route::get('/class/{class_id}/editPertemuan/{pertemuan_id}', 'ClassController@viewEditClass');
-Route::post('/class/{class_id}/editPertemuan/{pertemuan_id}/success', 'ClassController@editClass');
+Route::get('/class/{class_id}/{pertemuan_id}/editPertemuan', 'PertemuanController@viewEditPertemuan');
+Route::post('/class/{class_id}/{pertemuan_id}/editPertemuan/success', 'PertemuanController@editPertemuan');
+Route::get('/class/{class_id}/{pertemuan_id}/deletePertemuan', 'PertemuanController@deletePertemuan');
+

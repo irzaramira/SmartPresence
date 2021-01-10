@@ -16,6 +16,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pemrograman Web A',
             'timedesc'=>'Senin, 08.00-09.40',
             'location' => 'FIKLAB 301',
+            'image'=>'empty',
             'dosen_id'=>1
         ]);
 
@@ -23,6 +24,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pemrograman Web B',
             'timedesc'=>'Senin, 08.00-09.40',
             'location' => 'FIKLAB 302',
+            'image'=>'empty',
             'dosen_id'=>2
         ]);
 
@@ -30,6 +32,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pemrograman Berorientasi Objek A',
             'timedesc'=>'Selasa, 10.00-11.40',
             'location' => 'FIKLAB 301',
+            'image'=>'empty',
             'dosen_id'=>1
         ]);
 
@@ -37,6 +40,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pemrograman Berorientasi Objek B', 
             'timedesc'=>'Selasa, 10.00-11.40',
             'location' => 'FIKLAB 302',
+            'image'=>'empty',
             'dosen_id'=>2
         ]);
 
@@ -44,6 +48,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pengolahan Citra Digital A',
             'timedesc'=>'Rabu, 13.00-14.40',
             'location' => 'FIKLAB 301',
+            'image'=>'empty',
             'dosen_id'=>1
         ]);
 
@@ -51,6 +56,7 @@ class ClassesSeeder extends Seeder
             'name'=>'Pengolahan Citra Digital B',
             'timedesc'=>'Rabu, 13.00-14.40',
             'location' => 'FIKLAB 302',
+            'image'=>'empty',
             'dosen_id'=>2
         ]);
     }

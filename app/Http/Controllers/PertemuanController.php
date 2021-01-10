@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Classes;
+use App\Pertemuan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,18 +18,47 @@ class PertemuanController extends Controller
 
         $request->validate([
             'pertemuanname' => 'required',
-            'date_start' => 'required',
-            'date_end' => 'required'
+            'timestart' => 'required',
+            'timeend' => 'required'
             ]);
             
             DB::table('pertemuans')->insert([
                 'classes_id' => $class_id,
                 'name'=> $request->pertemuanname,
                 'date_start'=> $request->timestart,
-                'date_end'=> $request->timestart,
+                'date_end'=> $request->timeend,
             ]);
             
-        return redirect('classes')->with('class',$class_id);
+        return redirect('/class/'.$class_id);
+    }
+
+    public function viewEditPertemuan($class_id){
+        $class = Classes::where('id', $class_id)->first();
+        $pertemuan = Pertemuan::where('classes_id', $class_id)->first();
+        return view ('editPertemuan')->with('class', $class)->with('pertemuan', $pertemuan);
+    }
+
+    public function editPertemuan(Request $request, $class_id){
+        $request->validate([
+            'pertemuanname' => 'required',
+            'timestart' => 'required',
+            'timeend' => 'required'
+            ]);
+            
+            DB::table('pertemuans')->where('id', $class_id)->update([
+                'name'=> $request->pertemuanname,
+                'date_start'=> $request->timestart,
+                'date_end'=> $request->timeend,
+            ]);
+        
+        return redirect('/class/'.$class_id);
+    }
+
+    public function deletePertemuan($class_id, $pertemuan_id){
+        DB::table('absens')->where('pertemuan_id', $pertemuan_id)->delete();
+        DB::table('pertemuans')->where('id', $pertemuan_id)->delete();
+
+        return redirect('/class/'.$class_id);
     }
 
 }

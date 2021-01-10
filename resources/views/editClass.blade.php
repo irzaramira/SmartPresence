@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Add Kelas')
+@section('pageTitle', 'Edit Class')
 
 @section('content')
-    <div class="jumbotron jumbotron-fluid text-center">
-        <h3>Edit Kelas</h3>
+    <div class="jumbotron jumbotron-og jumbotron-fluid text-center">
+        <h3>Edit Class</h3>
         <h1 class="display-4" style="font-weight: bolder">{{ $class->name }}</h1>
     </div>
 
     <div class="container">
-        <form method="POST" action="/class/{{ $class->id }}/editClass/success">
+        <form method="POST" action="/class/{{ $class->id }}/editClass/success" enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-center">
                 
@@ -19,6 +19,13 @@
                 <div class="col-lg-5 mb-4">
                     <input id="classname" type="text" class="form-control" name="classname"
                         value="{{ $class->name }}" required autocomplete="classname" autofocus>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <label class="col-form-label font-weight-bold" for="classimage">Class Image</label> 
+                </div>
+                <div class="col-lg-5 mb-4">
+                    <input type="file" class="form-control" name="classimage">
                 </div>
                 
                 <div class="col-lg-4 mb-4">
@@ -38,7 +45,7 @@
                 </div>
 
                 <button class="col-lg-4 btn btn-success" type="submit">Submit</button>
-                <a class="btn btn-danger mx-2" href="/class/{{ $class->id }}">
+                <a class="col-lg-4 btn btn-danger mx-2" href="/class/{{ $class->id }}">
                     Cancel
                 </a>
                 

@@ -18,6 +18,7 @@ class CreateClassesTable extends Migration
             $table->string('name');
             $table->string('timedesc');
             $table->string('location');
+            $table->string('image');
             $table->unsignedBigInteger('dosen_id');
             $table->foreign('dosen_id')->references('id')->on('users');
             $table->timestamps();

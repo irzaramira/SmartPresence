@@ -9,4 +9,6 @@ class Absen extends Model
     public function mahasiswa(){
         return $this->hasOne('App\User', 'id', 'user_id');
     }
+
+    
 }

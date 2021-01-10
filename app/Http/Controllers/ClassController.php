@@ -41,22 +41,39 @@ class ClassController extends Controller
 
         $request->validate([
             'classname' => 'required',
+            'classimage' => 'mimes:jpg,jpeg,png',
             'timedescclass' => 'required',
-            'location' => 'location'
+            'location' => 'required'
             ]);
             
-            DB::table('classes')->insert([
-                'dosen_id' => $dosen_id,
-                'name'=> $request->classname,
-                'timedesc'=> $request->timedescclass,
-                'location' => $request->location
-            ]);
+            
+            if($request->hasFile('classimage')){
+                $file = $request->file('classimage');
+                $file->move('img/class_image/', $request->classimage->getClientOriginalName());
+
+                DB::table('classes')->insert([
+                    'dosen_id' => $dosen_id,
+                    'name'=> $request->classname,
+                    'image'=> $request->classimage->getClientOriginalName(),
+                    'timedesc'=> $request->timedescclass,
+                    'location' => $request->location
+                ]);
+            }else{
+                DB::table('classes')->insert([
+                    'dosen_id' => $dosen_id,
+                    'name'=> $request->classname,
+                    'image'=> 'empty',
+                    'timedesc'=> $request->timedescclass,
+                    'location' => $request->location
+                ]);
+            }
             
             $class = Classes::where('dosen_id', $dosen_id)->get()->last();
             DB::table('userclasses')->insert([
                 'user_id' => $dosen_id,
                 'classes_id' => $class->id
             ]);
+
         return redirect('/');
     }
 
@@ -68,16 +85,44 @@ class ClassController extends Controller
     public function editClass(Request $request, $class_id){
         $request->validate([
             'classname' => 'required',
+            'classimage' => 'mimes:jpg,jpeg,png',
             'timedescclass' => 'required',
             'location' => 'required'
             ]);
             
-            DB::table('classes')->where('id', $class_id)->update([
-                'name'=> $request->classname,
-                'timedesc'=> $request->timedescclass,
-                'location'=> $request->location
-            ]);
+            if($request->hasFile('classimage')){
+                $file = $request->file('classimage');
+                $file->move('img/class_image/', $request->classimage->getClientOriginalName());
+
+                DB::table('classes')->where('id', $class_id)->update([
+                    'name'=> $request->classname,
+                    'image'=> $request->classimage->getClientOriginalName(),
+                    'timedesc'=> $request->timedescclass,
+                    'location' => $request->location
+                ]);
+            }else{
+                DB::table('classes')->where('id', $class_id)->update([
+                    'name'=> $request->classname,
+                    'image'=> 'empty',
+                    'timedesc'=> $request->timedescclass,
+                    'location' => $request->location
+                ]);
+            }
         
         return redirect('/class/'.$class_id);
+    }
+
+    public function deleteClass($class_id){
+        $pertemuan = Pertemuan::where('classes_id', $class_id)->get();
+
+        foreach($pertemuan as $pert){
+            DB::table('absens')->where('pertemuan_id', $pert->id)->delete();
+        }
+
+        DB::table('pertemuans')->where('classes_id', $class_id)->delete();
+        DB::table('userclasses')->where('classes_id', $class_id)->delete();
+        DB::table('classes')->where('id', $class_id)->delete();
+        
+        return redirect('/');
     }
 }
