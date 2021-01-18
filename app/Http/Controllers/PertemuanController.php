@@ -32,20 +32,20 @@ class PertemuanController extends Controller
         return redirect('/class/'.$class_id);
     }
 
-    public function viewEditPertemuan($class_id){
+    public function viewEditPertemuan($class_id, $pertemuan_id){
         $class = Classes::where('id', $class_id)->first();
-        $pertemuan = Pertemuan::where('classes_id', $class_id)->first();
+        $pertemuan = Pertemuan::where('id', $pertemuan_id)->first();
         return view ('editPertemuan')->with('class', $class)->with('pertemuan', $pertemuan);
     }
 
-    public function editPertemuan(Request $request, $class_id){
+    public function editPertemuan(Request $request, $class_id, $pertemuan_id){
         $request->validate([
             'pertemuanname' => 'required',
             'timestart' => 'required',
             'timeend' => 'required'
             ]);
             
-            DB::table('pertemuans')->where('id', $class_id)->update([
+            DB::table('pertemuans')->where('id', $pertemuan_id)->update([
                 'name'=> $request->pertemuanname,
                 'date_start'=> $request->timestart,
                 'date_end'=> $request->timeend,

@@ -6,15 +6,15 @@ html {
     scroll-behavior: smooth;
 }
 
-.title-login{
-    color : rgb(130, 82, 31);
+.title-login {
+    color: #e79e4f;
 }
 
-.logo-img-login{
+.logo-img-login {
     width: 6rem
 }
 
-.btn-login{
+.btn-login {
     background-color: #3797a4;
     color: white;
 }
@@ -24,70 +24,143 @@ html {
     color: white;
 }
 
-.login-container{
+.login-container {
     height: 100vh;
     width: 100%;
-    background-color: #eeeeee;
+    /* background-color: #eeeeee; */
+    min-height: 100vh;
+    background-image: url(../img/login-background.png);
+    background-color: rgb(36, 36, 36);
+    background-blend-mode: overlay;
+    background-size: cover;
 }
 
-.login-form{
+.login-form {
     margin: auto;
     width: 370px;
     padding: 15px;
     max-width: 100%;
 }
 
-.login-form .form-control{
+.login-form .form-control {
     font-size: 15px;
     min-height: 48px;
     font-weight: 500;
 }
 
-.copyright-login{
+.copyright-login {
     font-size: 0.8rem;
-    color:black;
+    color: black;
 }
 
-.logo-img-nav{
-    width: 3rem
+.logo-img-nav {
+    width: 10rem
 }
 
-.navbar{
+.navbar {
     background-color: #e79e4f;
 }
 
-.jumbotron-og{
+.jumbotron-og {
     background-color: #3797a4;
-    color : white;
+    color: white;
 }
 
-.content{
+.content {
     background-color: rgb(250, 250, 250);
 }
 
-.page-footer{
+.page-footer {
     background-color: #2c3e50;
     color: white;
 }
 
-.footer-copyright{
-    font-size:0.8rem; 
+.footer-copyright {
+    font-size: 0.8rem;
     color: white;
     background-color: #1a252f
 }
 
-.jumbotron-cls{
+.jumbotron-cls {
     background-color: #122f33;
-    color : white;
+    color: white;
 }
 
-.background-image{ 
-    background-size:cover;
+.background-image {
+    background-size: cover;
     background-blend-mode: overlay;
 }
 
-.bg-socmed{
+.bg-socmed {
     background-color: white;
     border-radius: 50px 50px 50px 50px;
     width: 17.5rem;
+}
+
+@media screen and (max-width: 512px) {
+    .title-mobile {
+        font-size: 2.5rem;
+    }
+
+    .desc-mobile {
+        font-size: 1rem;
+    }
+}
+
+.nav-link-custom {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.nav-link-active {
+    color: #008091;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.nav-link-custom:hover {
+    color: #008091;
+    text-decoration: none;
+}
+
+#button {
+    display: inline-block;
+    background-color: #FF9800;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    border-radius: 4px;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    transition: background-color .3s,
+        opacity .5s, visibility .5s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+#button::after {
+    content: "\f077";
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 2em;
+    line-height: 50px;
+    color: #fff;
+}
+
+#button:hover {
+    cursor: pointer;
+    background-color: #333;
+}
+
+#button:active {
+    background-color: #555;
+}
+
+#button.show {
+    opacity: 1;
+    visibility: visible;
 }

@@ -5,25 +5,40 @@
 
 @section('content')
     @if ($class->image == 'empty')
-        <div class="jumbotron jumbotron-cls jumbotron-fluid text-center background-image mt-2"
+        <div class="jumbotron jumbotron-cls jumbotron-fluid text-center background-image mt-4"
             style="background-image:url({{ asset('img/class_default.png') }})">
         @else
-            <div class="jumbotron jumbotron-cls jumbotron-fluid text-center background-image mt-2"
+            <div class="jumbotron jumbotron-cls jumbotron-fluid text-center background-image mt-4"
                 style="background-image:url({{ asset("img/class_image/$class->image") }})">
     @endif
-    <h1 class="display-4" style="font-weight: bolder">{{ $class->name }}</h1>
-    <h4 class="mt-5">Dengan {{ $class->dosen->name }},</h4>
-    <h5>{{ $class->timedesc }} ({{ $class->location }})</h5>
+    <h1 class="display-4 title-mobile" style="font-weight: bolder">{{ $class->name }}</h1>
+    <div class="mt-4">
+        <h4 class="desc-mobile">Dengan {{ $class->dosen->name }},</h4>
+        <h5 class="desc-mobile">{{ $class->timedesc }} ({{ $class->location }})</h5>
+    </div>
     @if (Auth::user()->role == 'dosen')
         <a href="/class/{{ $class->id }}/editClass">
             <button class="btn btn-outline-light mt-4" type="submit">Edit Kelas</button>
         </a>
     @endif
+    @if (Auth::user()->role == 'mahasiswa')
+        <a href="/class/{{ $class->id }}/unenroll" class="btn btn-outline-light mt-4">
+            Unenroll this Class
+        </a>
+    @endif
     </div>
+
+    <?php
+    use Carbon\Carbon;
+
+    $currentdate = Carbon::now('Asia/Jakarta');
+    ?>
+
 
     <div class="container">
         <div class="accordion" id="accordionExample">
             @foreach ($pertemuan as $index => $pert)
+
                 <div class="card">
                     <div class="card-header" type="button" id="headingOne" data-toggle="collapse"
                         data-target="#collapse{{ $pert->id }}" aria-expanded="false" aria-controls="collapseOne">
@@ -43,12 +58,16 @@
                             <div class="row">
                                 <div class="col-4 text-center">
                                     <p class="font-weight-bold">QR Code</p>
-                                    <img class="img-fluid" src="{{ asset('img/elearning_qr.png') }}" alt="qrcode">
+                                    <img class="img-fluid"
+                                        src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=/class/{{ $class->id }}"
+                                        alt="qrcode_pertemuan">
                                 </div>
                                 <div class="col-8">
-                                    <table class="table">
+                                    <p class="font-weight-bold text-center">Daftar Absensi</p>
+                                    <table class="table table-hover table-sm">
                                         <thead>
                                             <tr>
+                                                <th scope="col"></th>
                                                 <th scope="col">Nama Mahasiswa</th>
                                                 <th scope="col">NIM</th>
                                                 <th scope="col">Waktu Kehadiran</th>
@@ -58,9 +77,33 @@
                                             @foreach ($absens as $abs)
                                                 <tr>
                                                     @if ($pert->id == $abs['pertemuan_id'])
+                                                        <td>
+                                                            @if ($abs['ava'] == 'empty')
+                                                                <img class="shadow-sm"
+                                                                    src="{{ asset('img/avatar_default.png') }}" width="32"
+                                                                    height="32" style="border-radius: 100%;">
+                                                            @else
+                                                                <?php $ava = $abs['ava']; ?>
+                                                                <img class="shadow-sm" src="{{ asset("img/avatar/$ava") }}"
+                                                                    width="32" height="32" style="border-radius: 100%;">
+                                                            @endif
+                                                        </td>
                                                         <td>{{ $abs['nama'] }}</td>
                                                         <td>{{ $abs['nim'] }}</td>
                                                         <td>{{ $abs['waktu'] }}</td>
+                                                        @if (Auth::user()->role == 'dosen')
+                                                            <td scope="col">
+                                                                <a href="/class/{{ $class->id }}/{{ $pert->id }}/{{ $abs['id'] }}/delete"
+                                                                    class="btn btn-danger">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                                                    </svg>
+                                                                </a>
+                                                            </td>
+                                                        @endif
                                                     @endif
                                                 </tr>
                                             @endforeach
@@ -68,6 +111,42 @@
                                     </table>
                                 </div>
                             </div>
+
+                            @if (Auth::user()->role == 'mahasiswa')
+                                @foreach ($statuses as $stat)
+                                    @if ($stat['pertemuan_id'] == $pert->id)
+                                        @if ($stat['status'] == '1')
+                                            <p class="text-center text-success font-weight-bold">You already checked in.</p>
+                                        @else
+                                            @if ($currentdate >= $pert->date_start && $currentdate <= $pert->date_end)
+                                                <form action="/class/{{ $class->id }}/{{ $pert->id }}/checked"
+                                                    method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-success btn-block mt-3">
+                                                        Check In
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                            fill="currentColor" class="bi bi-check-circle"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                            <path
+                                                                d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
+                                            @else
+                                                @if ($currentdate > $pert->date_end)
+                                                    <p class="text-center text-danger font-weight-bold">Class has ended.</p>
+                                                @endif
+                                                @if ($currentdate < $pert->date_start)
+                                                    <p class="text-center text-info font-weight-bold">Class has not started
+                                                        yet.</p>
+                                                @endif
+                                            @endif
+                                        @endif
+                                    @endif
+                                @endforeach
+                            @endif
 
                             @if (Auth::user()->role == 'dosen')
                                 <div class="btn-group col-lg-12 mt-3">
@@ -108,7 +187,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             @endif
                         </div>
                     </div>

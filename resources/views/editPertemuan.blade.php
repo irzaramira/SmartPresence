@@ -37,8 +37,8 @@
                         value="{{ $pertemuan->date_end }}" required autocomplete="timeend" autofocus>
                 </div>
 
-                <button class="col-lg-4 btn btn-success" type="submit">Edit Pertemuan</button>
-                <a class="col-lg-4 btn btn-danger mx-2" href="/class/{{ $class->id }}">
+                <button class="col-lg-4 btn btn-success mx-1" type="submit">Edit Pertemuan</button>
+                <a class="col-lg-4 btn btn-danger mx-1" href="/class/{{ $class->id }}">
                     Cancel
                 </a>
             </div>

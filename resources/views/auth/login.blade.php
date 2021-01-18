@@ -48,20 +48,16 @@
                     @enderror
                 </div>
             </div>
-            <div class="forgot-link form-group d-flex justify-content-between align-items-center">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                        {{ old('remember') ? 'checked' : '' }}>
-
-                    <label class="form-check-label" for="remember">
-                        {{ __('Remember Me') }}
-                    </label>
-                </div>
-            </div>
 
             @error('username')
                 <p class="font-weight-bold text-danger">Incorrect Username or Password!</p>
             @enderror
+
+            <div class="form-check text-left">
+                <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                    {{ old('remember') ? 'checked' : '' }} onclick="changeColor()">
+                <label class="form-check-label" for="remember" style="color: white">Remember Me</label>
+            </div>
 
             <button type="submit" class="btn mt-2 btn-lg btn-login btn-block text-uppercase">
                 {{ __('Login') }}
