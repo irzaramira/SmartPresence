@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes;
 use App\Pertemuan;
+use App\User;
 use App\Userclass;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -72,11 +73,12 @@ class UserController extends Controller
         ]);
         
         if(Hash::check($request->currentpass, $user->password)){
-            $newpassword = Hash::make($request->newpass);
-            DB::table('users')->where('id', $user->id)->update([
-                'password'=>$newpassword,
-                'updated_at'=>Carbon::now('Asia/Jakarta')
-            ]);
+            $newpassword = Hash::make($request->new_password);
+            $currentuser = User::find(Auth::id());
+            $currentuser->password = $newpassword;
+            $currentuser->updated_at = Carbon::now('Asia/Jakarta');
+            $currentuser->save();
+            
             return redirect('/');
         }
         else{

@@ -96,7 +96,7 @@
                             @endif
 
                             @if (Auth::user()->role == 'admin')
-                                
+
                             @endif
 
                             <div class="nav-item dropdown text-center">
@@ -302,9 +302,7 @@
 
             <!-- Copyright -->
             <div class="footer-copyright text-center py-3">
-                <a href="https://fik.upnvj.ac.id/" target="blank" style="text-decoration: none; color:white ">
-                    Copyright © Fakultas Ilmu Komputer<br>UPN Veteran Jakarta 2020
-                </a>
+                Copyright 2020 © SmartPresence Project
             </div>
             <!-- Copyright -->
 

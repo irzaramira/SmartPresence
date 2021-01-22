@@ -6,6 +6,9 @@
     <div class="jumbotron jumbotron-og jumbotron-fluid text-center mt-4">
         <h1 class="display-4" style="font-weight: bolder">Registered Pertemuan</h1>
         <h3>{{ $class->name }} dengan {{ $dosen->name }}</h3>
+        <a href="{{ url('/classregistered')}}" class="btn btn-danger mt-4">
+            Back
+        </a>
     </div>
     <div class="container">
 
@@ -37,7 +40,7 @@
                     </div>
                 </div>
 
-                <table class="table table-hover">
+                <table class="table table-hover table-responsive-sm">
                     <thead class="bg-danger text-white">
                         <tr>
                             <th class="text-center">No</th>
@@ -62,6 +65,7 @@
                     </tbody>
                 </table>
             </div>
+            <hr>
         @endforeach
 
     </div>

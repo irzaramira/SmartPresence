@@ -7,7 +7,7 @@
         <h1 class="display-4" style="font-weight: bolder">Registered Dosen</h1>
     </div>
     <div class="container">
-        <table class="table table-hover">
+        <table class="table table-hover table-responsive-sm">
             <thead class="bg-primary text-white">
                 <tr>
                     <th></th>

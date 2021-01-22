@@ -15,6 +15,24 @@
         <div class="container">
 
             @if (Auth::user()->role != 'admin')
+
+                @if ($classes->isEmpty())
+                    @if (Auth::User()->role == 'mahasiswa')
+                        <h1 class="text-danger text-center font-weight-bold" style="margin-top: 8rem">
+                            You dont have any class enrolled.
+                        </h1>
+                        <p class="text-center font-weight-bold">Please go to <a href="{{ url('/allclass') }}">All
+                                Class</a>
+                            page to enroll a class.</p>
+                    @endif
+                    @if (Auth::User()->role == 'dosen')
+                        <h1 class="text-danger text-center font-weight-bold" style="margin-top: 8rem">
+                            You dont have any class.
+                        </h1>
+                        <p class="text-center font-weight-bold">Please add a class by clicking the button below.</p>
+                    @endif
+                @endif
+
                 <div class="form-row">
                     @foreach ($classes as $class)
                         <div class="col-lg-4 my-2">
@@ -92,7 +110,7 @@
             @endif
 
             @if (Auth::user()->role == 'admin')
-                <div class="form-row">
+                <div data-aos="fade-up" class="form-row">
 
                     <div class="col-lg-4 my-2">
                         <div class="border border-primary shadow-sm rounded">

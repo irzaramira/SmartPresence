@@ -30,7 +30,7 @@ html {
     /* background-color: #eeeeee; */
     min-height: 100vh;
     background-image: url(../img/login-background.png);
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(48, 48, 48);
     background-blend-mode: overlay;
     background-size: cover;
 }
@@ -50,7 +50,7 @@ html {
 
 .copyright-login {
     font-size: 0.8rem;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .logo-img-nav {

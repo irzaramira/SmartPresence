@@ -22,9 +22,25 @@
         </a>
     @endif
     @if (Auth::user()->role == 'mahasiswa')
-        <a href="/class/{{ $class->id }}/unenroll" class="btn btn-outline-light mt-4">
-            Unenroll this Class
-        </a>
+        <button type="button" class="btn btn-outline-light mt-4" data-toggle="modal" data-target="#unenroll">
+            Unenroll
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="unenroll" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-center">
+                        <h5 class="modal-title text-dark">Are you sure you want to unenroll from<br>
+                            {{ $class->name }} class?
+                        </h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <a class="btn btn-danger" href="/class/{{ $class->id }}/unenroll">Yes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endif
     </div>
 
@@ -56,15 +72,15 @@
                         data-parent="#accordionExample">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-4 text-center">
+                                <div class="col-lg-4 text-center">
                                     <p class="font-weight-bold">QR Code</p>
                                     <img class="img-fluid"
-                                        src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=/class/{{ $class->id }}"
+                                        src="https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=smartpresenceupnvj.my.id/class/{{ $class->id }}"
                                         alt="qrcode_pertemuan">
                                 </div>
-                                <div class="col-8">
+                                <div class="col-lg-8">
                                     <p class="font-weight-bold text-center">Daftar Absensi</p>
-                                    <table class="table table-hover table-sm">
+                                    <table class="table table-hover table-sm table-responsive-sm">
                                         <thead>
                                             <tr>
                                                 <th scope="col"></th>

@@ -3,7 +3,7 @@
 @section('pageTitle', 'Add Class')
 
 @section('content')
-    <div class="jumbotron jumbotron-og jumbotron-fluid text-center">
+    <div class="jumbotron jumbotron-og jumbotron-fluid text-center mt-4">
         <h1 class="display-4" style="font-weight: bolder">Add Class</h1>
     </div>
 
@@ -40,6 +40,9 @@
                 <div class="col-lg-5 mb-4">
                     <input id="location" type="text" class="form-control" name="location"
                         value="" required autocomplete="timedescclass" autofocus>
+                </div>
+                <div class="col-lg-12 mb-4 text-center">
+                    <button type="reset" class="btn btn-secondary mt-2">Reset</button>
                 </div>
 
                 <button class="col-lg-4 btn btn-success mx-1" type="submit">Add Kelas</button>

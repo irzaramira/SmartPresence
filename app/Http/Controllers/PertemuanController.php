@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Classes;
 use App\Pertemuan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -27,6 +28,7 @@ class PertemuanController extends Controller
                 'name'=> $request->pertemuanname,
                 'date_start'=> $request->timestart,
                 'date_end'=> $request->timeend,
+                'created_at'=> Carbon::now('Asia/Jakarta')
             ]);
             
         return redirect('/class/'.$class_id);
@@ -49,6 +51,7 @@ class PertemuanController extends Controller
                 'name'=> $request->pertemuanname,
                 'date_start'=> $request->timestart,
                 'date_end'=> $request->timeend,
+                'updated_at'=> Carbon::now('Asia/Jakarta')
             ]);
         
         return redirect('/class/'.$class_id);

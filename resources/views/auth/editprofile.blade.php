@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Edit Class')
+@section('pageTitle', 'Edit Profile')
 
 @section('content')
     <div class="jumbotron jumbotron-og jumbotron-fluid text-center">

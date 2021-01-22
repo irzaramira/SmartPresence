@@ -17,7 +17,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Senin, 08.00-09.40',
             'location' => 'FIKLAB 301',
             'image'=>'empty',
-            'dosen_id'=>1
+            'dosen_id'=>2
         ]);
 
         DB::table('classes')->insert([
@@ -25,7 +25,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Senin, 08.00-09.40',
             'location' => 'FIKLAB 302',
             'image'=>'empty',
-            'dosen_id'=>2
+            'dosen_id'=>3
         ]);
 
         DB::table('classes')->insert([
@@ -33,7 +33,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Selasa, 10.00-11.40',
             'location' => 'FIKLAB 301',
             'image'=>'empty',
-            'dosen_id'=>1
+            'dosen_id'=>2
         ]);
 
         DB::table('classes')->insert([
@@ -41,7 +41,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Selasa, 10.00-11.40',
             'location' => 'FIKLAB 302',
             'image'=>'empty',
-            'dosen_id'=>2
+            'dosen_id'=>3
         ]);
 
         DB::table('classes')->insert([
@@ -49,7 +49,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Rabu, 13.00-14.40',
             'location' => 'FIKLAB 301',
             'image'=>'empty',
-            'dosen_id'=>1
+            'dosen_id'=>2
         ]);
 
         DB::table('classes')->insert([
@@ -57,7 +57,7 @@ class ClassesSeeder extends Seeder
             'timedesc'=>'Rabu, 13.00-14.40',
             'location' => 'FIKLAB 302',
             'image'=>'empty',
-            'dosen_id'=>2
+            'dosen_id'=>3
         ]);
     }
 }

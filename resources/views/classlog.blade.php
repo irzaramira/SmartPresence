@@ -11,7 +11,7 @@
         @foreach ($users as $user)
             <div class="my-5">
                 <h3 class="font-weight-bold">Dosen : {{ $user->name }}</h3>
-                <table class="table table-hover">
+                <table class="table table-hover table-responsive-sm">
                     <thead class="bg-danger text-white">
                         <tr>
                             <th class="text-center">No</th>
@@ -60,6 +60,7 @@
                     </tbody>
                 </table>
             </div>
+            <hr>
         @endforeach
 
     </div>

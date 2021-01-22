@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Classes')
+@section('pageTitle', 'All Class')
 
 @section('content')
     <div class="jumbotron jumbotron-og jumbotron-fluid text-center mt-4">
-        <h1 class="display-4" style="font-weight: bolder">ALL CLASSES</h1>
+        <h1 class="display-4" style="font-weight: bolder">ALL CLASS</h1>
         <h3>Available</h3>
     </div>
     <div class="container">
@@ -29,7 +29,7 @@
 
         <p class="text-center text-info mb-3" style="font-weight: bold">{{ $message }}</p>
 
-        <div class="form-row">
+        <div data-aos="fade-up" class="form-row">
             @foreach ($classes as $class)
                 <div class="col-lg-4 my-2">
                     <div class="border shadow-sm rounded">

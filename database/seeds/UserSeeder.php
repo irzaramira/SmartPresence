@@ -14,6 +14,15 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
+            'name'=>'admin',
+            'email'=>'admin@upnvj.ac.id',
+            'username'=>'admin',
+            'password'=>Hash::make('admin'),
+            'image'=>'empty',
+            'role'=>'admin'
+            ]);
+            
+        User::create([
             'name'=>'dosen1',
             'email'=>'dosen1@upnvj.ac.id',
             'username'=>'0000000001',
@@ -47,15 +56,6 @@ class UserSeeder extends Seeder
             'password'=>Hash::make('12345'),
             'image'=>'empty',
             'role'=>'mahasiswa'
-            ]);
-            
-        User::create([
-            'name'=>'admin',
-            'email'=>'admin@upnvj.ac.id',
-            'username'=>'admin',
-            'password'=>Hash::make('admin'),
-            'image'=>'empty',
-            'role'=>'admin'
             ]);
     }
 }

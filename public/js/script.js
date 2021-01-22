@@ -48,3 +48,5 @@ btn.on('click', function (e) {
         scrollTop: 0
     }, '300');
 });
+
+AOS.init();

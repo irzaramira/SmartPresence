@@ -3,7 +3,7 @@
 @section('pageTitle', 'Add Pertemuan')
 
 @section('content')
-    <div class="jumbotron jumbotron-og jumbotron-fluid text-center">
+    <div class="jumbotron jumbotron-og jumbotron-fluid text-center mt-4">
         <h1 class="display-4" style="font-weight: bolder">{{ $class->name }}</h1>
         <h3 class="mt-3">Add Pertemuan</h3>
     </div>
@@ -35,6 +35,9 @@
                 <div class="col-lg-5 mb-4">
                     <input id="timeend" type="datetime-local" class="form-control" name="timeend"
                         value="" required autocomplete="timeend" autofocus>
+                </div>
+                <div class="col-lg-12 mb-4 text-center">
+                    <button type="reset" class="btn btn-secondary mt-2">Reset</button>
                 </div>
 
                 <button class="col-lg-4 btn btn-success mx-1" type="submit">Add Pertemuan</button>
