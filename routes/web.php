@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/Profile', 'UserController@viewProfile');
 Route::get('/editProfile', 'UserController@viewEditProfile');
 Route::post('/editProfile/success', 'UserController@editProfile');
 Route::get('/changePassword', 'UserController@viewChangePassword');

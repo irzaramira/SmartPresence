@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function viewProfile(){
+        $user = Auth::user();
+        return view ('auth/profile')->with('user', $user);
+    }
+
     public function viewEditProfile(){
         $user = Auth::user();
         return view ('auth/editprofile')->with('user', $user);

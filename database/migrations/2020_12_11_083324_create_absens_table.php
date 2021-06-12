@@ -16,6 +16,7 @@ class CreateAbsensTable extends Migration
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
             $table->time('date');
+            $table->string('location');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('pertemuan_id');

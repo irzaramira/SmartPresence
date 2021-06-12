@@ -87,6 +87,7 @@
                                                 <th scope="col">Nama Mahasiswa</th>
                                                 <th scope="col">NIM</th>
                                                 <th scope="col">Waktu Kehadiran</th>
+                                                <th scope="col">Lokasi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -107,6 +108,7 @@
                                                         <td>{{ $abs['nama'] }}</td>
                                                         <td>{{ $abs['nim'] }}</td>
                                                         <td>{{ $abs['waktu'] }}</td>
+                                                        <td>{{ $abs['lokasi'] }}</td>
                                                         @if (Auth::user()->role == 'dosen')
                                                             <td scope="col">
                                                                 <a href="/class/{{ $class->id }}/{{ $pert->id }}/{{ $abs['id'] }}/delete"

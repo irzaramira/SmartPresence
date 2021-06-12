@@ -47,6 +47,7 @@
                             <th>NIM</th>
                             <th>Name</th>
                             <th>Date</th>
+                            <th>Location</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,6 +59,7 @@
                                     <td class="text-center">{{ $no }}</td>
                                     <td>{{ $abs['nim'] }}</td>
                                     <td>{{ $abs['name'] }}</td>
+                                    <td>{{ $abs['date'] }}</td>
                                     <td>{{ $abs['date'] }}</td>
                                 </tr>
                             @endif
